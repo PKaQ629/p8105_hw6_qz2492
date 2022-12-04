@@ -179,7 +179,7 @@ birthweight = read_csv('./data/birthweight.csv') %>%
     malform = as.factor(malform),
     mrace = as.factor(mrace)
   ) %>%
-  select(-pnumsga, -pnumlbw) %>%
+  select(-pnumsga, -pnumlbw) %>%   ## remove variable containing useless information
   drop_na() %>%
   relocate(bwt)
 ```
@@ -224,6 +224,8 @@ model_1 = step(intercept_only, direction='both', scope=formula(biggest_model), t
 
 equatiomatic::extract_eq(model_1, use_coefs = TRUE)
 ```
+
+
 This model includes `bhead`, `blength`, `mrace`, `delwt`, `gaweeks`, `smoken`, `ppbmi`, `babysex`, `parity`, `ppwt` and `fincome`, more variables than I think have an influence on birthweight.
 
 #### show a plot of model residuals against fitted values
